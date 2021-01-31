@@ -1,1 +1,1 @@
-options("browser" = "chromium-browser")
+../.Rprofile
