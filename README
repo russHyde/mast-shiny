@@ -65,6 +65,7 @@ These might be:
 - [Sh] input functions: eg, `selectInput` adds a drop-down list
 - [Sh] output functions: eg, verbatimTextOutput, tableOutput
 - [Sh] layout, input, output functions evaluate to html
+- [Sh] server <- function(input, output, server) {}
 - [Sh] in server function, add recipes for how to update the output based on
   (changes in) the input; the dependencies are encoded implicitly
 - [Sh] updates to "app.R" will autopopulate in the browser if you reload the
@@ -86,3 +87,6 @@ Error in dyn.load(file,
 (required by
 /home/russ/tools/miniconda3/envs/shiny/lib/R/library/Rcpp/libs/Rcpp.so)
 ```
+
+- [Sh] - Ch3/Ex1 - numericInput should have a default value; ie, the provided
+  code should be `numericInput("age", "How old are you?", 0)`
