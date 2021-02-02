@@ -30,6 +30,11 @@ But, I'd like to work out how to deploy to
 - heroku
 - aws
 
+## Testing
+
+Similarly, I'd like to try using Rselenium (and related tools) for testing
+shiny apps.
+
 ## Projects
 
 Some simple apps I'd like to build
