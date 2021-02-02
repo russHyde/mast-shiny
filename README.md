@@ -19,21 +19,12 @@ Use conda environment 'shiny'
 
 `rstudio` is installed outside conda, so it can be used by all conda envs
 
-## Deployment
+## Deployment & Testing
 
-"Mastering Shiny" doesn't claim to cover deployment
+Deployment isn't covered in Mastering Shiny. See my notes in DEPLOYING-SHINY.md
 
-But, I'd like to work out how to deploy to
-- localhost
-- digital ocean
-- shinyapps.io
-- heroku
-- aws
-
-## Testing
-
-Similarly, I'd like to try using Rselenium (and related tools) for testing
-shiny apps.
+I don't think functional testing is covered in Mastering Shiny and, I'd like to
+try using Rselenium (and related tools) for testing shiny apps.
 
 ## Projects
 
@@ -54,18 +45,22 @@ These might be:
 
 ### Ch3
 
+- Local deployment (see DEPLOYING-SHINY.md for more details):
+    - [RS] to run an app "[Ctrl][Shift][Enter]" or click the run-app button
+    - [R] to run an app: run  `shiny::runApp("app_path")`
+    - [R] to launch in the browser, set options("browser" =
+      "chromium-browser"), then call shiny::runApp(path, launch.browser = TRUE)
+    - [R] add options() calls to ./.Rprofile and they will automatically be
+      included at startup (if you start R from the correct working-directory)
+    - [Sh] options("shiny.port" = 1234) to define a fixed port for shiny to
+      listen on
+    - [Sh] updates to "app.R" will autopopulate in the browser if you reload
+      the browser's page (you don't need to restart the local server)
+
 - [Sh] uses reactive programming
 - [Comp] reactive programming: kind of a dynamically updated data pipeline
 - [Sh] to make a new app, add app.R, with function 'server' and 'ui' then call
   shiny::shinyApp(ui, server)
-- [RS] to run an app "[Ctrl][Shift][Enter]" or click the run-app button
-- [R] to run an app: run source(app_path) or shiny::runApp(app_path)
-- [R] to launch in the browser, set options("browser" = "chromium-browser"),
-  then call shiny::runApp(path, launch.browser = TRUE)
-- [R] add options() calls to ./.Rprofile and they will automatically be
-  included at startup (if you start R from the correct working-directory)
-- [Sh] options("shiny.port" = 1234) to define a fixed port for shiny to listen
-  on
 - [Sh] layout functions: eg, `fluidPage(..., title = NULL, etc)` takes any
   number of inputs/widgets as arguments
 - [Sh] input functions: eg, `selectInput` adds a drop-down list
@@ -74,8 +69,6 @@ These might be:
 - [Sh] server <- function(input, output, server) {}
 - [Sh] in server function, add recipes for how to update the output based on
   (changes in) the input; the dependencies are encoded implicitly
-- [Sh] updates to "app.R" will autopopulate in the browser if you reload the
-  browser's page (you don't need to restart the local server)
 - [Sh] don't use functions/variables to deduplicate code, use `reactive({})`
   wrapper (this returns a reactive expression)
 - [Sh] use a reactive expression by calling it like a function
