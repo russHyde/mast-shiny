@@ -3,6 +3,7 @@
 ## Env
 
 Use conda environment 'shiny'
+- see env/environment.yml and env/requirements.txt
 - this was cloned from env 'rstudio-prereqs' (uses R=4.0.3)
 - then "r-shiny" (1.6.0) was installed
 - all packages mentioned in the preface of "Mastering Shiny" were added as
