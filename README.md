@@ -45,6 +45,10 @@ These might be:
 
 ### Ch2 {Your first Shiny app}
 
+- [Sh] to make a new app, add app.R, with function 'server' and 'ui' then call
+  shiny::shinyApp(ui, server)
+- [Sh] server <- function(input, output, server) {}
+
 - Local deployment (see DEPLOYING-SHINY.md for more details):
     - [RS] to run an app "[Ctrl][Shift][Enter]" or click the run-app button
     - [R] to run an app: run  `shiny::runApp("app_path")`
@@ -59,15 +63,12 @@ These might be:
 
 - [Sh] uses reactive programming
 - [Comp] reactive programming: kind of a dynamically updated data pipeline
-- [Sh] to make a new app, add app.R, with function 'server' and 'ui' then call
-  shiny::shinyApp(ui, server)
 - [Sh] layout functions: eg, `fluidPage(..., title = NULL, etc)` takes any
   number of inputs/widgets as arguments
 - [Sh] input functions: See Ch3 for the choices of input-function, and the html
   elements that they correspond to
 - [Sh] output functions: eg, verbatimTextOutput, tableOutput
 - [Sh] layout, input, output functions evaluate to html
-- [Sh] server <- function(input, output, server) {}
 - [Sh] in server function, add recipes for how to update the output based on
   (changes in) the input; the dependencies are encoded implicitly
 - [Sh] don't use functions/variables to deduplicate code, use `reactive({})`
@@ -93,6 +94,10 @@ These might be:
   function
 - [Sh] the class="..." argument in `actionButton()` is passed down to the html,
   so you can use bootstrap class names for formatting.
+- [Sh] sliderInput can take Date or POSIXt objects for min/max/value
+- [Sh] sliderInput with animate=TRUE will iterate through all available choices
+- [Sh] step argument in numericInput constrains the values that clicking can
+  reach, but not the values the user can type in.
 
 ## Errors
 - [RS] - problem with running runApp within rstudio (looks like rcpp is trying
