@@ -63,7 +63,8 @@ These might be:
   shiny::shinyApp(ui, server)
 - [Sh] layout functions: eg, `fluidPage(..., title = NULL, etc)` takes any
   number of inputs/widgets as arguments
-- [Sh] input functions: eg, `selectInput` adds a drop-down list
+- [Sh] input functions: See Ch3 for the choices of input-function, and the html
+  elements that they correspond to
 - [Sh] output functions: eg, verbatimTextOutput, tableOutput
 - [Sh] layout, input, output functions evaluate to html
 - [Sh] server <- function(input, output, server) {}
@@ -72,6 +73,26 @@ These might be:
 - [Sh] don't use functions/variables to deduplicate code, use `reactive({})`
   wrapper (this returns a reactive expression)
 - [Sh] use a reactive expression by calling it like a function
+
+### Ch3 {Basic UI}
+
+- [Sh] Inputs for
+    - text: `textInput`, `passwordInput`, `textAreaInput`
+    - numbers: `numericInput`, `sliderInput` (can use the latter to
+    define ranges)
+    - dates: `dateInput`, `dateRangeInput`
+    - choices: `selectInput`, `radioButtons`, `checkboxInput`,
+    `checkboxGroupInput`
+    - files: `fileInput`
+    - actions: `actionButton`, `actionLink`
+
+- [Sh] `validate` function for checking text-input validity
+- [Sh] Can distinguish the 'choiceNames' (what is presented to the user) from
+  the 'choiceValues' (what is sent back to R) when using radioButtons
+- [Sh] match input-actions with `observeEvent` / `eventReactive` in the server
+  function
+- [Sh] the class="..." argument in `actionButton()` is passed down to the html,
+  so you can use bootstrap class names for formatting.
 
 ## Errors
 - [RS] - problem with running runApp within rstudio (looks like rcpp is trying
