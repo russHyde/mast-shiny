@@ -43,7 +43,7 @@ These might be:
 - [RS]tudio
 - or [Comp]uting tips / concepts
 
-### Ch3
+### Ch2 {Your first Shiny app}
 
 - Local deployment (see DEPLOYING-SHINY.md for more details):
     - [RS] to run an app "[Ctrl][Shift][Enter]" or click the run-app button
