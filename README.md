@@ -16,7 +16,7 @@ Use conda environment 'shiny'
       en masse, hence installed as needed)
     - installed individual tidyverse packages (rather than tidyverse)
     - first part of the book only needs:
-        - dplyr, ggplot2, lubridate, reactable, shiny, vroom,
+        - dplyr, ggplot2, lubridate, reactable, shiny, shinythemes, vroom,
 
 `rstudio` is installed outside conda, so it can be used by all conda envs
 
@@ -31,6 +31,7 @@ try using Rselenium (and related tools) for testing shiny apps.
 
 Some simple apps I'd like to build
 
+- Wordcloud: Stackoverflow tags for a user
 - Homebrew statistics: Is my brew ready to bottle (fed by googlesheets data)
 - R package analysis: app for `code_as_data` project
 
@@ -123,10 +124,26 @@ These might be:
 - [Sh] options = list(...) is passed through to JS library DataTables when
   calling renderDataTable()
 
+- [Sh] Layout functions:
+    - `*Page` [fluidPage]
+    - `*Layout` [sidebarLayout]
+    - `*Panel` [titlePanel, sidebarPanel, mainPanel]
+
+- [Sh] a basic fluidPage() pulls in JS for jquery, and both JS/CSS for shiny,
+  bootstrap and bootstrap-accessibility
+- [Sh] sidebarLayout requires that sidebarPanel and mainPanel are defined
+- [Sh] combining `fluidRow()` with `column()` provides more flexibility than
+  `sidebarLayout()`; column widths must add to 12 in a fluidRow.
+- [Sh] `shinythemes::themeSelector()` in the `ui` !!!
+- [Sh] `shinythemes::shinytheme(theme_name)` to set a non-default theme
+- [Sh] `{fresh}` for building new themes
+
 ## Errors
+
 - [RS] - problem with running runApp within rstudio (looks like rcpp is trying
   to use the system libstdc++, rather than the conda-environment's version and
   the system libstdc++ can't be updated for some reason):
+
 ```
 Error in dyn.load(file,
   DLLpath = DLLpath, ...) :
