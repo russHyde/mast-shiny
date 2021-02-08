@@ -8,14 +8,15 @@ Use conda environment 'shiny'
 - then "r-shiny" (1.6.0) was installed
 - all packages mentioned in the preface of "Mastering Shiny" were added as
   needed
-    - (used the most recent version of each package, rather than the book's
-      chosen versions)
+    - (used the most recent version of each package that was on conda-forge,
+      rather than the book's chosen versions)
     - note 'thematic' is not available on conda-forge
     - added a 'r-thematic' build for R-4.0.3 to my anaconda account
     - many conflicts found (eg, r-xml2 and r-tidyverse conflict when installing
       en masse, hence installed as needed)
     - installed individual tidyverse packages (rather than tidyverse)
-    - first part of the book only needs shiny, ggplot2, dplyr, vroom
+    - first part of the book only needs:
+        - dplyr, ggplot2, lubridate, reactable, shiny, vroom,
 
 `rstudio` is installed outside conda, so it can be used by all conda envs
 
@@ -67,7 +68,7 @@ These might be:
   number of inputs/widgets as arguments
 - [Sh] input functions: See Ch3 for the choices of input-function, and the html
   elements that they correspond to
-- [Sh] output functions: eg, verbatimTextOutput, tableOutput
+- [Sh] output functions: See Ch3 for the choices of output-function.
 - [Sh] layout, input, output functions evaluate to html
 - [Sh] in server function, add recipes for how to update the output based on
   (changes in) the input; the dependencies are encoded implicitly
@@ -98,6 +99,29 @@ These might be:
 - [Sh] sliderInput with animate=TRUE will iterate through all available choices
 - [Sh] step argument in numericInput constrains the values that clicking can
   reach, but not the values the user can type in.
+
+- [Sh] Outputs for
+    - text:
+        - `textOutput` (flowing text; pair with `renderText`),
+        - `verbatimTextOutput` (as if output by the R console; pair with
+          renderPrint)
+    - tables:
+        - `tableOutput` (static tables; pair with `renderTable`)
+        - `dataTableOutput` (dynamic tables; pair with `renderDataTable`)
+        - `reactable::reactableOutput` (dynamic; pair with
+          `reactable::renderReactable(reactable(some_df))`)
+    - plots:
+        - `plotOutput` (paired with `renderPlot`)
+    - downloads:
+        - `downloadButton`
+        - `downloadLink`
+- [Sh] `<type>Output()` functions in the UI should be paired with a
+  `render<type>()` function in the server function
+- [R] package `reactable` for neat dynamic tables
+- [Sh] plots that are output to the browser can be used as inputs (eg,
+  following user clicks)
+- [Sh] options = list(...) is passed through to JS library DataTables when
+  calling renderDataTable()
 
 ## Errors
 - [RS] - problem with running runApp within rstudio (looks like rcpp is trying
