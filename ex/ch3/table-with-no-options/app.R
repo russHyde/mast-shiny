@@ -1,21 +1,14 @@
 # sec 3.3.5 ex 4
 
 library(shiny)
+library(reactable)
 
 ui <- fluidPage(
-  dataTableOutput("table")
+  reactableOutput("table")
 )
 
 server <- function(input, output, server) {
-  output$table <- renderDataTable(
-    mtcars,
-    options = list(
-      pageLength = 5,
-      searching = FALSE,
-      rowReorder = FALSE,
-      rowReorder.enable = FALSE
-    )
-  )
+  output$table <- renderReactable(reactable(mtcars))
 }
 
 shiny::shinyApp(ui, server)
