@@ -4,8 +4,8 @@
 
 But, I'd like to work out how to deploy to
 - localhost
-- digital ocean
 - shinyapps.io
+- digital ocean
 - heroku
 - aws
 
@@ -55,13 +55,17 @@ example, I usually set
 so that my apps can be viewed in Chrome.
 
 So that you don't have to type these options in each time you launch your app,
-you can add them to a file `.Rprofile` in your working directory:
+you can add them to a file `.Rprofile` in your home- or working-directory:
 
 ```
 # My ./.Rprofile looks like this
 options(shiny.port = 6600)
 options(browser = "chromium-browser")
 ```
+
+(However) if your app may be worked on by another developer, these options
+should probably be set in the home directory of your computer (so your choice
+of browser doesn't affect your colleagues choice of browser)
 
 ### Rstudio
 
@@ -80,5 +84,43 @@ Rscript \
 
 .. and then view it in your browser.
 
+
+## Deployment to the web
+
+### shinyapps.io
+
+This is probably the simplest way to get an app published on the web.
+First, sign up for an account at shinyapps.io.
+On logging into the site, you will be able to see some instructions for how to
+configure your local R to deploy apps.
+Install `rsconnect` (`install.packages("rsconnect")`) if required.
+Then copy in the code that looks like the following into R (make sure you can
+see the secret key):
+
+```
+rsconnect::setAccountInfo(
+  name="user-name",
+  token="ranDomselectionOfCharacters",
+  secret="even-more-secretCollectionOfcharacters"
+)
+```
+
+If that isn't visible on the first post-login page, you can find the token &
+secret by following `Dashboard->Account->Tokens` in shinyapps.io.
+
+Now, if you've written a shiny app, and it's working locally, you should be
+able to deploy that app up to shinyapps.io using the following code:
+
+```
+library(rsconnect)
+deployApp(appDir = "path/to/your/app")
+```
+
+Now if you look in the Applications tab in your shinyapps.io account, there'll
+be loads of info on your newly deployed app; and if you follow your nose you'll
+find a URL for it; this will probably look like
+`https://<my-user-prefix>.shinyapps.io/<my-app-name>`
+
+There are a lot of arguments for `deployApp`, well worth investigating.
 
 [TO BE CONTINUED]
