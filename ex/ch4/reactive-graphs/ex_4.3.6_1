@@ -1,0 +1,56 @@
+```
+server1 <- function(input, output, server) {
+  c <- reactive(input$a + input$b)
+  e <- reactive(c() + input$d)
+  ourput$f <- renderText(e())
+}
+```
+
+```
+[a> -- >c>
+     /    \
+[b> -      \
+            \
+[d> -------- >e> -- >f]
+```
+
+```
+server2 <- function(input, output, server) {
+  x <- reactive(input$x1 + input$x2 + input$x3)
+  y <- reactive(input$y1 + input$y2)
+}
+```
+
+```
+[x1> -
+      \
+[x2> -- >x> -
+      /      \
+[x3> -        \
+               >z]
+              /
+             /
+[y1> -- >y> -
+      /
+[y2> -
+```
+
+```
+server3 <- function(input, output, server) {
+  d <- reactive(c() ^ input$d)
+  a <- reactive(input$a * 10)
+  c <- reactive(b() + input$c)
+  b <- reactive(a() + input$b)
+}
+```
+
+```
+[d> -------------------
+                       \
+                        >d>
+                       /
+[c> ------------- >c> -
+                 /
+[b> ------- >b> -
+           /
+[a> - >a> -
