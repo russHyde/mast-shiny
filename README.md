@@ -140,7 +140,10 @@ These might be:
 
 ### Ch4 {Basic Reactivity}
 
-- [CS] Reactive programming: specify graph of dependencies
+- [CS] Reactive programming: specify graph of dependencies, the computer
+  decides when / if any computation is required
+    - Commands (Imperative) vs Recipes (Declarative)
+    - Laziness
 - [Sh] `server` function invoked each time a new session starts (-->
   independence between different user's sessions)
 - [Sh] `input` argument to `server`:
@@ -153,6 +156,12 @@ These might be:
     - produce/update it's elements with a render function
       (`output$value <- renderText("blah")`)
     - write-only
+- [Sh] {reactlog} can be used to draw reactive-graphs
+- [Sh] 'reactive expression's
+    - can use 'input's
+    - can be used by render functions (ie to _make_ 'output's)
+    - wrap some code in `reactive(...)` to reduce duplication.
+- [Sh] execution-order is not determined by code-order but by reactive-graph
 
 ## Errors
 
