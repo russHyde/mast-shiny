@@ -43,7 +43,7 @@ These might be:
 - [Web]
 - [R]
 - [RS]tudio
-- or [Comp]uting tips / concepts
+- or [CS] Computing tips / concepts
 
 ### Ch2 {Your first Shiny app}
 
@@ -64,7 +64,7 @@ These might be:
       the browser's page (you don't need to restart the local server)
 
 - [Sh] uses reactive programming
-- [Comp] reactive programming: kind of a dynamically updated data pipeline
+- [CS] reactive programming: kind of a dynamically updated data pipeline
 - [Sh] layout functions: eg, `fluidPage(..., title = NULL, etc)` takes any
   number of inputs/widgets as arguments
 - [Sh] input functions: See Ch3 for the choices of input-function, and the html
@@ -137,6 +137,22 @@ These might be:
 - [Sh] `shinythemes::themeSelector()` in the `ui` !!!
 - [Sh] `shinythemes::shinytheme(theme_name)` to set a non-default theme
 - [Sh] `{fresh}` for building new themes
+
+### Ch4 {Basic Reactivity}
+
+- [CS] Reactive programming: specify graph of dependencies
+- [Sh] `server` function invoked each time a new session starts (-->
+  independence between different user's sessions)
+- [Sh] `input` argument to `server`:
+    - list-like object
+    - read-only (ensures the value matches the browser-viewable values; but
+      browser values can be updated with updateNumericInput())
+    - only readable in a reactive context
+- [Sh] `output` argument to `server`:
+    - list-like object
+    - produce/update it's elements with a render function
+      (`output$value <- renderText("blah")`)
+    - write-only
 
 ## Errors
 
