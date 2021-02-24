@@ -22,23 +22,20 @@ t_test <- function(x1, x2) {
   )
 }
 
+rnorm_selector <- function(id_distribution, width = 4) {
+  column(
+    width,
+    paste("Distribution", id_distribution),
+    numericInput(paste0("n", id_distribution), label = "n", value = 1000, min = 1),
+    numericInput(paste0("mean", id_distribution), label = "μ", value = 0, step = 0.1),
+    numericInput(paste0("sd", id_distribution), label = "σ", value = 0.5, min = 0.1, step = 0.1)
+  )
+}
+
 ui <- fluidPage(
   fluidRow(
-    # can Distribution 1 & 2 be deduplicated?
-    column(
-      4,
-      "Distribution 1",
-      numericInput("n1", label = "n", value = 1000, min = 1),
-      numericInput("mean1", label = "μ", value = 0, step = 0.1),
-      numericInput("sd1", label = "σ", value = 0.5, min = 0.1, step = 0.1)
-    ),
-    column(
-      4,
-      "Distribution 2",
-      numericInput("n2", label = "n", value = 1000, min = 1),
-      numericInput("mean2", label = "μ", value = 0, step = 0.1),
-      numericInput("sd2", label = "σ", value = 0.5, min = 0.1, step = 0.1)
-    ),
+    rnorm_selector(1),
+    rnorm_selector(2),
     column(
       4,
       "Frequency polygon",
