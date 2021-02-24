@@ -162,6 +162,15 @@ These might be:
     - can be used by render functions (ie to _make_ 'output's)
     - wrap some code in `reactive(...)` to reduce duplication.
 - [Sh] execution-order is not determined by code-order but by reactive-graph
+- [Sh] terminology
+    - producers = reactive inputs and expressions
+    - consumers = reactive expressions and outputs
+- [CS] to insert unicode (eg, mu) Ctrl-Shift-U 03BC (find the relevant code
+  here: https://www.compart.com/en/unicode/U+03BC) or copy the relevant symbol
+  from here: https://unicode-table.com/en/03C3/
+- [Sh] strive to ensure as little gets recomputed as possible when coding up the
+  server function
+
 
 ## Errors
 
