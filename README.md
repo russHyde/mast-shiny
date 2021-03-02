@@ -170,7 +170,19 @@ These might be:
   from here: https://unicode-table.com/en/03C3/
 - [Sh] strive to ensure as little gets recomputed as possible when coding up the
   server function
-
+- [Sh] `reactiveTimer` = reactive expression that also depends on current time.
+  Use it within a reactive expression for something you want to compute.
+- [Sh] `actionButton` can be used to ensure a computation is ran whenever the
+  button is pressed.
+- [Sh] `eventReactive(dependsOnThis, computesThis)` = reactive expression; this
+  can be used to remove a direct dependency upon something that is required for
+  a computation; eg, you can depend upon an actionButton being pressed, but use
+  various other input values within the computation (without specifying a
+  dependency on the latter)
+- [Sh] observers are used to handle side-effects, where the side-effect depends
+  on reactive producers (eg, saving computed values to a file)
+    - do not assign observer 'values' to a variable
+    - cannot be referred to by other reactive consumers
 
 ## Errors
 
