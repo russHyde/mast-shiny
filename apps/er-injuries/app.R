@@ -41,6 +41,12 @@ summary_plot <- function(df, y = c("rate", "count")) {
   }
 }
 
+pull_narrative <- function(df) {
+  df %>%
+    pull(narrative) %>%
+    sample(1)
+}
+
 # == APP == #
 
 ui <- fluidPage(
@@ -61,11 +67,25 @@ ui <- fluidPage(
   # Figure
   fluidRow(
     column(12, plotOutput("age_sex"))
+  ),
+  # Narratives
+  fluidRow(
+    column(2, actionButton("story", "Tell me a story")),
+    column(10, textOutput("narrative"))
   )
 )
 
 server <- function(input, output, session) {
-  selected <- reactive(injuries %>% filter(prod_code == input$code))
+  selected <- reactive(
+    filter(injuries, prod_code == input$code)
+  )
+  summary <- reactive(
+    summarise_injuries(selected())
+  )
+  narrative_sample <- eventReactive(
+    list(input$story, selected()),
+    pull_narrative(selected())
+  )
 
   output$diag <- renderTable(
     count_top(selected(), diag),
@@ -79,16 +99,12 @@ server <- function(input, output, session) {
     count_top(selected(), location),
     width = "100%"
   )
-
-  summary <- reactive({
-    summarise_injuries(selected())
-  })
-
   output$age_sex <- renderPlot(
-    {
-      summary_plot(summary(), y = input$y)
-    },
+    summary_plot(summary(), y = input$y),
     res = 96
+  )
+  output$narrative <- renderText(
+    narrative_sample()
   )
 }
 
