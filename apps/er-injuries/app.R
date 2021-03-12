@@ -19,12 +19,38 @@ count_top <- function(df, var, n = 5) {
     summarise(n = as.integer(sum(weight)))
 }
 
+summarise_injuries <- function(df) {
+  df %>%
+    count(age, sex, wt = weight) %>%
+    left_join(population, by = c("age", "sex")) %>%
+    mutate(rate = n / population * 1e4)
+}
+
+summary_plot <- function(df, y = c("rate", "count")) {
+  y <- match.arg(y)
+  if (y == "count") {
+    df %>%
+      ggplot(aes(age, n, colour = sex)) +
+      geom_line() +
+      labs(y = "Estimated number of injuries")
+  } else {
+    df %>%
+      ggplot(aes(age, rate, colour = sex)) +
+      geom_line(na.rm = TRUE) +
+      labs(y = "Injuries per 10,000 people")
+  }
+}
+
 # == APP == #
 
 ui <- fluidPage(
   # Inputs
   fluidRow(
-    column(6, selectInput("code", "Product", choices = prod_codes))
+    column(
+      8,
+      selectInput("code", "Product", choices = prod_codes, width = "100%")
+    ),
+    column(2, selectInput("y", "Y axis", c("rate", "count")))
   ),
   # Tables
   fluidRow(
@@ -55,18 +81,12 @@ server <- function(input, output, session) {
   )
 
   summary <- reactive({
-    selected() %>%
-      count(age, sex, wt = weight) %>%
-      left_join(population, by = c("age", "sex")) %>%
-      mutate(rate = n / population * 1e4)
+    summarise_injuries(selected())
   })
 
   output$age_sex <- renderPlot(
     {
-      summary() %>%
-        ggplot(aes(age, n, colour = sex)) +
-        geom_line() +
-        labs(y = "Estimated number of injuries")
+      summary_plot(summary(), y = input$y)
     },
     res = 96
   )
