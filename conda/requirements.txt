@@ -44,7 +44,7 @@ https://conda.anaconda.org/conda-forge/linux-64/lz4-c-1.9.3-h9c3ff4c_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/make-4.3-hd18ef5c_1.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.2-h58526e2_4.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/nspr-4.29-h9c3ff4c_1.tar.bz2
-https://conda.anaconda.org/conda-forge/linux-64/openssl-1.1.1i-h7f98852_0.tar.bz2
+https://conda.anaconda.org/conda-forge/linux-64/openssl-1.1.1j-h7f98852_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/pcre-8.44-he1b5a44_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/pixman-0.40.0-h36c2ea0_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/pthread-stubs-0.4-h36c2ea0_1001.tar.bz2
@@ -152,16 +152,19 @@ https://conda.anaconda.org/conda-forge/linux-64/r-mime-0.9-r40hcfec24a_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-pkgconfig-2.0.3-r40h6115d3f_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-praise-1.0.0-r40h6115d3f_1004.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-ps-1.5.0-r40hcfec24a_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/r-r.methodss3-1.8.1-r40h6115d3f_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-r6-2.5.0-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-rappdirs-0.3.3-r40hcfec24a_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-rcolorbrewer-1.1_2-r40h6115d3f_1003.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-rcpp-1.0.6-r40h03ef668_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/r-renv-0.13.0-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-rlang-0.4.10-r40hcfec24a_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-rstudioapi-0.13-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-sourcetools-0.1.7-r40he1b5a44_1002.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-utf8-1.1.4-r40hcdcec82_1003.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-viridislite-0.3.0-r40h6115d3f_1003.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-withr-2.4.1-r40hc72bb7e_0.tar.bz2
+https://conda.anaconda.org/conda-forge/linux-64/r-xfun-0.20-r40hcfec24a_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-xtable-1.8_4-r40h6115d3f_3.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-yaml-2.2.1-r40hcfec24a_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-zeallot-0.1.0-r40h6115d3f_1002.tar.bz2
@@ -180,6 +183,7 @@ https://conda.anaconda.org/conda-forge/linux-64/r-nlme-3.1_152-r40h859d828_0.tar
 https://conda.anaconda.org/conda-forge/noarch/r-prettyunits-1.1.1-r40h6115d3f_1.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-processx-3.4.5-r40hcfec24a_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-purrr-0.3.4-r40hcdcec82_1.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/r-r.oo-1.24.0-r40h6115d3f_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-rprojroot-2.0.2-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-callr-3.5.1-r40h142f84f_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-desc-1.2.0-r40h6115d3f_1003.tar.bz2
@@ -187,6 +191,7 @@ https://conda.anaconda.org/conda-forge/noarch/r-htmlwidgets-1.5.3-r40hc72bb7e_0.
 https://conda.anaconda.org/conda-forge/noarch/r-jquerylib-0.1.3-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-mgcv-1.8_33-r40he454529_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-promises-1.1.1-r40h0357c0b_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/r-r.utils-2.10.1-r40h6115d3f_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-reactr-0.4.3-r40h6115d3f_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-sass-0.3.1-r40h03ef668_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-scales-1.1.1-r40h6115d3f_0.tar.bz2
@@ -196,6 +201,7 @@ https://conda.anaconda.org/conda-forge/noarch/r-hms-1.0.0-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-httpuv-1.5.5-r40h03ef668_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-pillar-1.4.7-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-pkgbuild-1.2.0-r40hc72bb7e_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/r-r.cache-0.14.0-r40h6115d3f_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-reactable-0.2.3-r40h142f84f_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-tidyselect-1.1.0-r40h6115d3f_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-pkgload-1.1.0-r40h0357c0b_0.tar.bz2
@@ -203,9 +209,11 @@ https://conda.anaconda.org/conda-forge/noarch/r-progress-1.2.2-r40h6115d3f_2.tar
 https://conda.anaconda.org/conda-forge/noarch/r-shiny-1.6.0-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-tibble-3.0.6-r40hcfec24a_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-dplyr-1.0.3-r40h03ef668_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/r-miniui-0.1.1.1-r40h6115d3f_1002.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-rematch2-2.1.2-r40h6115d3f_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-shinythemes-1.2.0-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-vroom-1.3.2-r40h1b71b39_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/r-styler-1.3.2-r40h6115d3f_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-waldo-0.2.3-r40hc72bb7e_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-testthat-3.0.1-r40h03ef668_0.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/r-isoband-0.2.3-r40h03ef668_0.tar.bz2
