@@ -49,7 +49,7 @@ These might be:
 
 - [Sh] to make a new app, add app.R, with function 'server' and 'ui' then call
   shiny::shinyApp(ui, server)
-- [Sh] server <- function(input, output, server) {}
+- [Sh] server <- function(input, output, session) {}
 
 - Local deployment (see DEPLOYING-SHINY.md for more details):
     - [RS] to run an app "[Ctrl][Shift][Enter]" or click the run-app button
@@ -140,6 +140,13 @@ These might be:
 
 ### Ch4 {Basic Reactivity}
 
+- [Sh] `eventReactive(dependsOnThis, computesThis)` = reactive expression; this
+  can be used to remove a direct dependency upon something that is required for
+  a computation; eg, you can depend upon an actionButton being pressed, but use
+  various other input values within the computation (without specifying a
+  dependency on the latter)
+    - dependsOnThis can be a list of things that the reactive expression
+      depends upon
 - [CS] Reactive programming: specify graph of dependencies, the computer
   decides when / if any computation is required
     - Commands (Imperative) vs Recipes (Declarative)
@@ -174,15 +181,29 @@ These might be:
   Use it within a reactive expression for something you want to compute.
 - [Sh] `actionButton` can be used to ensure a computation is ran whenever the
   button is pressed.
-- [Sh] `eventReactive(dependsOnThis, computesThis)` = reactive expression; this
-  can be used to remove a direct dependency upon something that is required for
-  a computation; eg, you can depend upon an actionButton being pressed, but use
-  various other input values within the computation (without specifying a
-  dependency on the latter)
 - [Sh] observers are used to handle side-effects, where the side-effect depends
   on reactive producers (eg, saving computed values to a file)
     - do not assign observer 'values' to a variable
     - cannot be referred to by other reactive consumers
+
+### Chapter 5 {Case study: ER injuries}
+
+- [R] in a function f(df, var); you can use mutate(df, {{var}} := g({{var}}))
+  to assign to, and evaluate the var column of df
+- [R] `fct_lump` is being deprecated, it chooses from `fct_lump_min`,
+  `fct_lump_n` ... based on the input
+- [R] `fct_infreq` changes the factor levels so that the most frequent class
+  is the first level
+- [R] `A = fct_infreq(fct_lump(f, n = n))` vs `B = fct_lump(fct_infreq(f), n = n)`
+    - `fct_lump` replaces all low frequency levels with 'Other'
+    - Suppose the number of entries that are combined into 'Other' is less than
+      the number of entries in any of the top-n factor levels, then there is no
+      difference between A and B
+    - Let 'LEV' be one of the top-n levels
+    - If, the number of elements that are classed as 'Other' is larger than
+      the number of elements that are classed to 'LEV', then the 'Other' factor
+      level will come before 'LEV' in the level-reordering performed by
+      `fct_infreq` (so Other will come earlier than 'LEV' in a frequency table)
 
 ## Errors
 
