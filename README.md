@@ -212,6 +212,11 @@ These might be:
 - [RS] run app as a background job, it will relaunch on every save
     - note rstudio now has an option for this in the "Run App" drop down)
     - harder to debug a background process
+- [Sh] `selectInput` returns a character, even if you provide a vector of
+  numeric values to choose from
+- [RS] add breakpoints by clicking to the left of a line number
+- [R] `a[a$b == "c", ]` keeps rows where `a$b` is `NA`
+- [Sh] `updateSliderInput` to update an input value from the server function
 
 ## Errors
 
