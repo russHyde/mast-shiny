@@ -207,6 +207,12 @@ These might be:
 
 ## Chapter 5 {Workflow}
 
+- [RS] type 'shinyapp' then press Shift-Tab: this adds a shiny template to a
+  script
+- [RS] run app as a background job, it will relaunch on every save
+    - note rstudio now has an option for this in the "Run App" drop down)
+    - harder to debug a background process
+
 ## Errors
 
 - [RS] - problem with running runApp within rstudio (looks like rcpp is trying
