@@ -1,5 +1,6 @@
 library(shiny)
 library(readr)
+library(dplyr)
 
 sales <- readr::read_csv(
   "https://raw.githubusercontent.com/hadley/mastering-shiny/master/sales-dashboard/sales_data_sample.csv"
@@ -15,7 +16,13 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  selected <- reactive(sales[sales$TERRITORY == input$territory, ])
+  selected <- reactive({
+    if (input$territory == "NA") {
+      subset(sales, is.na(TERRITORY))
+    } else {
+      subset(sales, TERRITORY == input$territory)
+    }
+  })
   output$selected <- renderTable(head(selected(), 10))
 }
 
