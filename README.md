@@ -45,7 +45,7 @@ These might be:
 - [RS]tudio
 - or [CS] Computing tips / concepts
 
-### Ch2 {Your first Shiny app}
+### Chapter 1 {Your first Shiny app}
 
 - [Sh] to make a new app, add app.R, with function 'server' and 'ui' then call
   shiny::shinyApp(ui, server)
@@ -77,7 +77,7 @@ These might be:
   wrapper (this returns a reactive expression)
 - [Sh] use a reactive expression by calling it like a function
 
-### Ch3 {Basic UI}
+### Chapter 2 {Basic UI}
 
 - [Sh] Inputs for
     - text: `textInput`, `passwordInput`, `textAreaInput`
@@ -138,7 +138,7 @@ These might be:
 - [Sh] `shinythemes::shinytheme(theme_name)` to set a non-default theme
 - [Sh] `{fresh}` for building new themes
 
-### Ch4 {Basic Reactivity}
+### Chapter 3 {Basic Reactivity}
 
 - [Sh] `eventReactive(dependsOnThis, computesThis)` = reactive expression; this
   can be used to remove a direct dependency upon something that is required for
@@ -186,7 +186,7 @@ These might be:
     - do not assign observer 'values' to a variable
     - cannot be referred to by other reactive consumers
 
-### Chapter 5 {Case study: ER injuries}
+### Chapter 4 {Case study: ER injuries}
 
 - [R] in a function f(df, var); you can use mutate(df, {{var}} := g({{var}}))
   to assign to, and evaluate the var column of df
@@ -204,6 +204,19 @@ These might be:
       the number of elements that are classed to 'LEV', then the 'Other' factor
       level will come before 'LEV' in the level-reordering performed by
       `fct_infreq` (so Other will come earlier than 'LEV' in a frequency table)
+
+## Chapter 5 {Workflow}
+
+- [RS] type 'shinyapp' then press Shift-Tab: this adds a shiny template to a
+  script
+- [RS] run app as a background job, it will relaunch on every save
+    - note rstudio now has an option for this in the "Run App" drop down)
+    - harder to debug a background process
+- [Sh] `selectInput` returns a character, even if you provide a vector of
+  numeric values to choose from
+- [RS] add breakpoints by clicking to the left of a line number
+- [R] `a[a$b == "c", ]` keeps rows where `a$b` is `NA`
+- [Sh] `updateSliderInput` to update an input value from the server function
 
 ## Errors
 
