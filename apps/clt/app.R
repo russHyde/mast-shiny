@@ -1,4 +1,4 @@
-# See section 3.4.3
+# See section  6.2.2
 
 library(shiny)
 library(shinythemes)
