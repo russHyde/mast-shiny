@@ -1,0 +1,44 @@
+# Section 6.2.4 (Single page layout exercises)
+
+## Ex1
+
+According to `?sidebarLayout`, the main area of a sidebarLayout takes up 2/3
+of the horizontal width (of the sidebarLayout). The columns of a fluidRow should
+add up to 12. So, to recreate this:
+
+```
+sidebarLayout(
+  sidebarPanel(...),
+  mainPanel(...)
+)
+```
+
+... using fluidRow would require code like this:
+
+```
+fluidRow(
+  column(4, sidebarPanel(...)),
+  column(8, mainPanel(...))
+)
+```
+
+## Ex 2
+
+(See also ./ex/ch3/clt; this exercise was moved out of the UI chapter into the
+layouts chapter)
+
+To put the sidebar on the right in the sidebarLayout you use
+```
+sidebarLayout(
+  sidebarPanel = blah,
+  mainPanel = blahblah,
+  position = "right"
+)
+```
+
+## Ex 3
+
+Create an app that contains two plots, each of which takes up half of the width
+
+(THis was done in ./ex/ch3/two-figures, this exercise was moved out of the UI
+chapter into the layouts chapter)
