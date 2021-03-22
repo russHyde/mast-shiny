@@ -123,17 +123,6 @@ These might be:
   following user clicks)
 - [Sh] options = list(...) is passed through to JS library DataTables when
   calling renderDataTable()
-
-- [Sh] Layout functions:
-    - `*Page` [fluidPage]
-    - `*Layout` [sidebarLayout]
-    - `*Panel` [titlePanel, sidebarPanel, mainPanel]
-
-- [Sh] a basic fluidPage() pulls in JS for jquery, and both JS/CSS for shiny,
-  bootstrap and bootstrap-accessibility
-- [Sh] sidebarLayout requires that sidebarPanel and mainPanel are defined
-- [Sh] combining `fluidRow()` with `column()` provides more flexibility than
-  `sidebarLayout()`; column widths must add to 12 in a fluidRow.
 - [Sh] `shinythemes::themeSelector()` in the `ui` !!!
 - [Sh] `shinythemes::shinytheme(theme_name)` to set a non-default theme
 - [Sh] `{fresh}` for building new themes
@@ -217,6 +206,87 @@ These might be:
 - [RS] add breakpoints by clicking to the left of a line number
 - [R] `a[a$b == "c", ]` keeps rows where `a$b` is `NA`
 - [Sh] `updateSliderInput` to update an input value from the server function
+
+## Chapter 6 {Layout, themes, HTML}
+
+(Chapter 6 was added while we were working through the book club; some of the
+notes below were originally connected with the Basic UI chapter)
+
+- [Resources]
+  - [Awesome Shiny Extensions](https://github.com/nanxstats/awesome-shiny-extensions)
+  - [Shiny Application Layout Guide](https://shiny.rstudio.com/articles/layout-guide.html)
+  - [Outstanding User Interfaces ...](https://unleash-shiny.rinterface.com)
+    - Especially Chapters 1, 5, 6, 7
+  - [Bootstrap](https://getbootstrap.com/)
+  - [Sass](https://sass-lang.com/)
+  - [MDN Intro to HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML)
+  - [MDN CSS First Steps](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps)
+  - [MDN Website parsing figure](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works/rendering.svg)
+
+- [Sh] Page functions:
+  - `fluidPage`, `fixedPage`, `fillPage`
+- [Sh] Layout functions:
+  - `sidebarLayout`
+- [Sh] Layout functions:
+    - `*Page` [fluidPage, navbarPage]
+    - `*Layout` [sidebarLayout]
+    - `*Panel` [titlePanel, sidebarPanel, mainPanel, tabsetPanel, tabPanel]
+- [Sh] a basic fluidPage() pulls in JS for jquery, and both JS/CSS for shiny,
+  bootstrap and bootstrap-accessibility
+- [Sh] sidebarLayout requires that sidebarPanel and mainPanel are defined
+- [Sh] combining `fluidRow()` with `column()` provides more flexibility than
+  `sidebarLayout()`; column widths must add to 12 in a fluidRow.
+- [Sh] `tabPanel` / `tabsetPanel` -based are single page apps with illusion of
+being multipage apps
+- [Sh] use `id` in `tabsetPanel` if you need to know which `tabPanel` is
+currently selected
+- [Sh] use `navlistPanel` with `tabPanel` to make vertical-selectors
+- [RS] open Rstudio devtools using 'inspect element' on an app
+- [Sh] `navbarPage` visually similar to tabsetPanel (horizontal selection) but
+each tab can have nested elements (using `navbarMenu` and `tabPanel`)
+- [CS] bootstrap
+
+    Quickly design and customize responsive mobile-first sites with Bootstrap,
+    the world’s most popular front-end open source toolkit, featuring Sass
+    variables and mixins, responsive grid system, extensive prebuilt components,
+    and powerful JavaScript plugins. (from bootstrap homepage)
+
+- [CS] Sorry, what was that:
+  - Sass variables
+    - Sass is a CSS preprocessor (makes it less tedious / complicated to write
+    CSS)
+    - [{sass}](https://github.com/rstudio/sass) R package
+    - You can't use variables in CSS, but you can in Sass (example from {sass})
+      `$size: 50%; foo { margin: $size * 0.33; }`
+    - See [Outstanding User Interfaces ...](https://unleash-shiny.rinterface.com/beautify-sass.html)
+  - Mixins
+    - Similar to functions
+  - Responsive grid
+    - ? bootstrap docs are peppered with "responsive" but I'm not sure what they
+    mean in context
+      - Perhaps see: https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design
+  - Prebuilt components
+    - eg, you don't have to write your own button class
+  - JS plugins
+
+- [Sh] (as of shiny 1.6) still uses bootstrap 3
+- [Sh] `bslib::bs_theme()` to customise visuals
+  - to use bootstrap 4: `[fluid|navbar|bootstrap]Page(..., theme = bslib::bs_theme("4"))`
+  - to use premade style: `fluidPage(..., theme = bslib::bs_theme(bootswatch = "some_theme"))`
+- [Sh] `class` argument to customise some layouts
+- [Sh] `{bslib}` has functions to make custom bootstrap classes
+- [CS] Alternative CSS frameworks:
+  - {shiny.semantic} = formantic
+  - {shinyMobile} = framework 7
+  - {shinymaterial} = Material design
+- [Sh] {shinydashboard} for making dashboards
+- [Sh] `bslib::bs_theme_preview(theme)` for interactive app for choosing a theme
+- [Sh] `thematic::theme_shiny()` in the server function, to pull plotting theme
+from the app's theme
+- [R] `html::htmlDependency` to add CSS or JS dependencies
+- [R] `htmltools::HTML()` to add raw html to a UI
+- [Sh] `htmlTemplate("www/index.html")` to use a UI defined by an .html file
+- [R] `htmltools::tags` to append specific html elements to UI
 
 ## Errors
 
