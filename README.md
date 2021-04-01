@@ -34,6 +34,8 @@ Some simple apps I'd like to build
 - Wordcloud: Stackoverflow tags for a user
 - Homebrew statistics: Is my brew ready to bottle (fed by googlesheets data)
 - R package analysis: app for `code_as_data` project
+- Create a plot / style colourscheme from a photo
+- dupree app
 
 ## Things I learned
 
