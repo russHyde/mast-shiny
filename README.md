@@ -291,3 +291,30 @@ from the app's theme
 - [Sh] `htmltools::htmlTemplate("www/index.html")` to use a UI defined by an
   .html file
 - [R] `htmltools::tags` to append specific html elements to UI
+
+## Chapter 7 {Graphics}
+
+TODO
+
+## Chapter 8 {User Feedback}
+
+- Resources
+  - {shinyFeedback}
+  - {waiter} - loading bars etc
+  - {shinyvalidate}
+
+- [Sh] `shinyFeedback`
+  - `useShinyFeedback()` in the ui
+  - `feedback()`, `feedbackWarning()`, `feedbackDanger()` or `feedbackSuccess()`
+  in the server
+  - on error/warning: error message is displayed but the output is still updated
+
+- [Sh] `shiny::req`:
+  - Prevents invalid input being used within app code
+  - Useful to pause shiny from running before any user-input has been provided
+  - signals a condition that stops all downstream reactive consumers
+  - `cancelOutput = TRUE` to leave all outputs displaying their last good value
+
+- [Sh] `shiny::validate()`
+  - to show error messages next to the output panel
+  - makes sense when multiple inputs need validating
