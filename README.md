@@ -291,3 +291,65 @@ from the app's theme
 - [Sh] `htmltools::htmlTemplate("www/index.html")` to use a UI defined by an
   .html file
 - [R] `htmltools::tags` to append specific html elements to UI
+
+## Chapter 7 {Graphics}
+
+TODO
+
+## Chapter 8 {User Feedback}
+
+- Resources
+  - {shinyFeedback}
+  - {waiter} - progress bars etc in shiny
+  - {progress} - progress bars in tidyverse
+  - {shinyvalidate}
+  - {shinycssloaders} - put a spinner on any output that has been
+  - [https://www.nngroup.com/articles/ok-cancel-or-cancel-ok/] notes on buttons
+
+- [Sh] `shinyFeedback`
+  - `useShinyFeedback()` in the ui
+  - `feedback()`, `feedbackWarning()`, `feedbackDanger()` or `feedbackSuccess()`
+  in the server
+  - on error/warning: error message is displayed but the output is still updated
+
+- [Sh] `shiny::req`:
+  - Prevents invalid input being used within app code
+  - Useful to pause shiny from running before any user-input has been provided
+  - signals a condition that stops all downstream reactive consumers
+  - `cancelOutput = TRUE` to leave all outputs displaying their last good value
+
+- [Sh] `shiny::validate`
+  - to show error messages next to the output panel
+  - makes sense when multiple inputs need validating
+
+- [Sh] `shiny::showNotification`:
+  - puts a note in the bottom-right of the page
+  - transient (disappears after fixed time; duration=5 (secs) is default),
+  - on-completion (disappears when the compute ends; set duration=NULL and
+  removeNotification() on.exit),
+  - progressive (several updates to a single message; call with id= the ID of
+  the initial call to showNotification)
+
+- [Sh] `shiny::withProgress`
+  - Use `incProgress(increment_size)` to push progress-bar from 0 to 1
+
+- [Sh] `{waiter}`
+  - 'Waitress' is a progress bar
+  - `waiter::use_waitress` in the ui
+  - `waitress <- waiter::Waitress$new(max = 100)` / `waitress$inc(1)` / `waitress$close()`
+    in the server (wrap waitress$close in on.exit)
+  - `theme` argument allows progress bar to hit whole page, or cover an input /
+  output widget (`Waitress$new(selector="#selector_id", theme="overlay")`)
+  - 'Waiter' is a spinner just to indicate that something is happening
+  - Note: Waiter uses 'id' and Waitress uses 'selector' to determine which
+  element a progress-indicator should overlay
+
+- Use an action-button and `eventReactive` to control the start of a
+long-running reactive
+
+- [Sh] `shiny::modalDialog`
+  - dialog box to confirm an action should be performed
+  - In the server: `showModal(some_modal_expression)`
+  - When `showModal` has been called, any UI elements that
+  `some_modal_expresion` has added to the UI are now accessible via 'input' /
+  'output' (this is dynamic UI)
