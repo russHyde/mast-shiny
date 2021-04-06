@@ -315,6 +315,14 @@ TODO
   - signals a condition that stops all downstream reactive consumers
   - `cancelOutput = TRUE` to leave all outputs displaying their last good value
 
-- [Sh] `shiny::validate()`
+- [Sh] `shiny::validate`
   - to show error messages next to the output panel
   - makes sense when multiple inputs need validating
+
+- [Sh] `shiny::showNotification`:
+  - puts a note in the bottom-right of the page
+  - transient (disappears after fixed time; duration=5 (secs) is default),
+  - on-completion (disappears when the compute ends; set duration=NULL and
+  removeNotification() on.exit),
+  - progressive (several updates to a single message; call with id= the ID of
+  the initial call to showNotification)
