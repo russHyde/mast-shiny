@@ -300,8 +300,10 @@ TODO
 
 - Resources
   - {shinyFeedback}
-  - {waiter} - loading bars etc
+  - {waiter} - progress bars etc in shiny
+  - {progress} - progress bars in tidyverse
   - {shinyvalidate}
+  - {shinycssloaders} - put a spinner on any output that has been invalidated
 
 - [Sh] `shinyFeedback`
   - `useShinyFeedback()` in the ui
@@ -326,3 +328,20 @@ TODO
   removeNotification() on.exit),
   - progressive (several updates to a single message; call with id= the ID of
   the initial call to showNotification)
+
+- [Sh] `shiny::withProgress`
+  - Use `incProgress(increment_size)` to push progress-bar from 0 to 1
+
+- [Sh] `{waiter}`
+  - 'Waitress' is a progress bar
+  - `waiter::use_waitress` in the ui
+  - `waitress <- waiter::Waitress$new(max = 100)` / `waitress$inc(1)` / `waitress$close()`
+    in the server (wrap waitress$close in on.exit)
+  - `theme` argument allows progress bar to hit whole page, or cover an input /
+  output widget (`Waitress$new(selector="#selector_id", theme="overlay")`)
+  - 'Waiter' is a spinner just to indicate that something is happening
+  - Note: Waiter uses 'id' and Waitress uses 'selector' to determine which
+  element a progress-indicator should overlay
+
+- Use an action-button and `eventReactive` to control the start of a
+long-running reactive
