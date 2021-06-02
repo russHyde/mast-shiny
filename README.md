@@ -353,3 +353,31 @@ long-running reactive
   - When `showModal` has been called, any UI elements that
   `some_modal_expresion` has added to the UI are now accessible via 'input' /
   'output' (this is dynamic UI)
+
+## Chapter 14 {The reactive graph}
+
+- [Sh]
+  - No prior knowledge of the relationships between reactives
+  - Starting state for consumers is 'invalidated'
+  - alg:
+    - Shiny picks an invalidated output and executes it
+    - Any (invalidated) reactive-expressions reqd by the output start to compute their value
+    - An arrow is drawn between the expression and the output
+    - Any inputs that are required are read immediately (and arrow is drawn from input to consumer)
+    - When all producers that feed into the output are computed, the output is computed
+  - on changing an input:
+    - the input is set to invalidated state
+    - any consumers that depend on that input are set to invalidated state
+    - each invalidated consumer erases all of the arrows coming into and out of it
+  - the reactive graph stays accurate by erasing all stale arrows
+
+- dynamism
+  - reactive graph can change while app runs
+  - the reactive graph at any particular time depends on the route that was followed through the
+    source code
+
+- [Sh] `{reactlog}`
+  - provides view into shiny's reactive graph
+  - plot outputs have an implicit dependency on plot dimensions (that you don't need to code)
+  - use 'label' on any `reactive` or `observe` components that you want to highlight in the
+    reactlog graph
