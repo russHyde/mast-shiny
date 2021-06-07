@@ -378,6 +378,123 @@ long-running reactive
 
 - [Sh] `{reactlog}`
   - provides view into shiny's reactive graph
+  - To use:
+    - `reactlog::reactlog_enable()`
+    - then start app
+    - then `Ctrl + F3` to launch the reactlog application
   - plot outputs have an implicit dependency on plot dimensions (that you don't need to code)
   - use 'label' on any `reactive` or `observe` components that you want to highlight in the
     reactlog graph
+
+## Chapter 15 (Reactive Building Blocks)
+
+- Important properties of reactives:
+  - lazy
+  - cached
+
+- Building blocks:
+  - Reactive values
+  - Reactive expressions
+  - Observers (outputs are special types of observer)
+
+- New tools:
+  - Isolation
+  - Timed invalidation
+
+- `reactiveConsole(TRUE)`
+  - enables reactivity in the console
+
+- Reactive values:
+  - Two types
+  - Both have reference semantics
+  - `input` values are a read-only form of reactive value
+  - `reactiveVal` 
+    - holds a single value
+    - `x <- reactiveVal(10); x(); x(15)` -- initialise, get, set
+  - `reactiveValues`
+    - holds a list of values
+    - `rs <- reactiveValues(x = 10); rs$x; rs$x <- 15` -- initialise, get set
+
+- Some functions only work inside of other functions (on.exit)
+  - `on.exit()` runs code after a function has completed
+
+- What does `shiny::req()` do again?
+  - It sends a signal condition that pauses all downstream reactives and outputs
+  - YOu can use it to check logic: `req(! input$error)`
+
+- Reactive expressions
+  - error handling
+    - errors are cached just as for values
+    - errors propagate through reactive graph as for regular values
+    - when error reaches an output or observer:
+      - outputs: display the error in the app
+      - observers: crash the session => therefore use try / tryCatch
+  - why does `on.exit()` work inside them
+    - `reactive(x())` as a shortcut for `function(){x()}` but with laziness
+    and caching for free
+    - hence, why on.exit() can be used in reactive-expressions (though it can't
+    be used in a general R expression)
+
+- Observers and Outputs
+  - Terminal nodes in the rx graph
+  - Eager and forgetful (unlike rx expressions: lazy and cached)
+  - Eagerness is transmitted to any producer used by the node
+  - Intended use: for side effects (any value is ignored)
+  - Both use `observe()` under the hood
+  - Outputs as special-types of Observers:
+    - defined when assigned to output `outptu$res <- ...`
+    - also know when they aren't visible (so lazy if not visible)
+  - Only ever use observers / outputs at top-level of server function
+
+- `observe()`
+  - sets up block of code that runs when anything it uses is updated
+  - low-level tool: try not to use it (recommend using observeEvent())
+  - observe doesn't 'do' something but 'create's something
+
+Note the difference:
+```
+x <- reactiveVal(1)        ||| a <- reactiveVale(1)
+y <- observe({             ||| b <- observe(
+  x()                      |||   observe(print(a()))
+  observe(print(x()))      ||| )
+})                         |||
+```
+
+Maybe a better example:
+```
+f <- reactiveVal(1)
+g <- reactiveVal(2)
+h <- observe({
+  f()
+  observe(print(g()))
+})
+# each time you change f, a new observer of g is added to the graph
+```
+
+- `isolate()`
+  - this powers `observeEvent` and `eventReactive`
+  - allows you to access a value, without taking a dependency on it
+  - `observeEvent(x, y) === observe({x; isolate(y)})`
+  - `eventReactive(x, y) === reactive({x; isolate(y)})`
+  - Additional args in observeEvent / eventReactive:
+    - ignoreNULL: by default observeEvent(x, y) / eventReactive(x, y) ignores
+    event where x is NULL
+    - ignoreInit = TRUE: do not run immediately at creation
+    - once = TRUE: run y only once in observeEvent(x, y)
+
+- `invalidateLater`
+  - invalidation of the rx graph when nothing has changed
+
+Things to emphasise:
+
+- Base R things that need to understand
+  - Reference semantics
+  - Function calls that must be inside a function
+  - Error handling in R
+- Shiny examples from earlier in the book
+  - req()
+  - reactiveTimer()
+    - can we recreate this using invalidateLater
+- Differences between observeEvent and eventReactive
+  - how to illustrate eagerness vs laziness?
+  - could compute something in an eventReactive that isn't used by an output
