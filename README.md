@@ -484,6 +484,54 @@ h <- observe({
 
 - `invalidateLater`
   - invalidation of the rx graph when nothing has changed
+  - underlies the `reactiveTimer()`
+  - to invalidate a reactive-consumer: `invalidateLater(ms)`
+  - polling: data that changes outside of R
+    - Make sure you check that the file has updated, or you'll do lots of wasted
+    computation
+    - eg, use `reactivePoll(ms, session, checkFunc, valueFunc)` (whenever
+    checkFunc changes, run valueFunc and update the rx graph)
+    - or, use `reactiveFileReader(ms, session, filepath, valueFunc)`
+    - Q: how to build a reactivePoll for a database
+  - invalidateLater(ms) times from when it is invoked (there's no implicit on.exit)
+  - can use `on.exit(invalidateLater(ms))` to invalidate after reactive has
+  finished
+  - cannot guarantee that invalidation will happen precisely when requested as R
+  might be doing other things
+
+```
+# Ex 15.5.4-1
+server <- function(input, output, session) {
+  x <- reactive({
+    invalidateLater(500)
+    rnorm(10)
+  })
+}
+
+# The reactive never gets executed because it is lazy and there is no output or observer
+# in the reactive graph that takes `x` as an input
+# Since `x` never gets put into a validated state, it never gets to invalidate itself
+
+# We can implicitly force its execution:
+ui <- fluidPage(
+  actionButton("capture", "capture")
+)
+server <- function(input, output, session) {
+
+  x <- reactive({
+    on.exit(message("Leaving x", r))
+    message("Entering x")
+    invalidateLater(500)
+    r <- rnorm(1)
+    r
+  })
+
+  observeEvent(input$capture, {
+    x()
+  })
+}
+shinyApp(ui, server)
+```
 
 Things to emphasise:
 
@@ -498,3 +546,26 @@ Things to emphasise:
 - Differences between observeEvent and eventReactive
   - how to illustrate eagerness vs laziness?
   - could compute something in an eventReactive that isn't used by an output
+
+## Chapter 23 (Performance)
+
+- Tools:
+  - `shinyloadtest` for benchmarking
+  - `profvis` for profiling where code is hanging
+
+- Resources:
+  - "Shiny in production: principles, best practices, and tools." Joe Cheng talk
+  - [https://rstudio.github.io/promises](Async programming in single-core R)
+
+- Benchmarking
+  - <!-- TODO: Did not read -->
+
+- Profiling
+  - `profvis`:
+    - interactive visualisation of profiling data from `utils::Rprof()`
+    - wrap your code: `profvis::profvis(some_func())`
+    - eg, `profvis::profvis(runApp())`
+  - flame-graph:
+    - rectangles with widths ~ time taken; height=call-stack at that point
+
+<!-- TODO: continue with "Improve performance" -->
