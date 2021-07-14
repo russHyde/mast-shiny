@@ -547,6 +547,49 @@ Things to emphasise:
   - how to illustrate eagerness vs laziness?
   - could compute something in an eventReactive that isn't used by an output
 
+## Chapter 21 (Testing)
+
+- Learning outcomes:
+  - Purpose of testing
+    - Ensure new features don't break existing code
+    - Ensure bugs only arise once
+  - Different levels of test
+  - Balance: speed, fragility, coverage
+
+Discussions:
+  - Don't test the framework!
+  - Don't test too early! Or do!
+
+- Using testthat
+
+- App structure:
+  - Requires package structure
+  - `./tests/testthat.R`
+  - `./tests/testthat/test-<file>.R`
+  - `./tests/testthat/_snaps/<file>.md`
+
+- Four levels of testing for shiny apps:
+  - non-reactive functions
+  - input-value-driven updates to reactives & outputs
+  - browser-driven tests
+  - visual output of the app
+
+- So what does that separate:
+  - reactive from stateless behaviour
+  - UI-dependent and independent behaviour
+  - values from visuals
+
+- New tools:
+  - `expect_named(x, c("a", "b", "c"), ignore.order = TRUE, ignore.case = FALSE)`
+  - `expect_setequal(x, y)`
+  - `expect_mapequal(x, y)`
+  - `expect_snapshot()`
+    - Example: output for a UI function
+    - Expected value is stored in a file
+    - Update the expected value using `testthat::snapshot_accept()`
+
+TODO: Workflow section
+
 ## Chapter 23 (Performance)
 
 - Tools:
