@@ -579,7 +579,15 @@ Discussions:
   - UI-dependent and independent behaviour
   - values from visuals
 
-- New tools:
+- Recommended workflow:
+  - create test files with `usethis::use_test()`
+  - Write code & tests
+  - Run `devtools::test_file()` while getting something to work
+  - Capture new bugs in tests
+  - Run `devtools::test_coverage_file()` to show you've covered all your function
+  - Run `devtools::test()` to test the whole package
+
+- New testthat things:
   - `expect_named(x, c("a", "b", "c"), ignore.order = TRUE, ignore.case = FALSE)`
   - `expect_setequal(x, y)`
   - `expect_mapequal(x, y)`
@@ -588,7 +596,24 @@ Discussions:
     - Expected value is stored in a file
     - Update the expected value using `testthat::snapshot_accept()`
 
-TODO: Workflow section
+- New RStudio things:
+  - Add keyboard shortcuts:
+    - This did not work
+  - Shortcuts I hoped to add:
+    - [Ctrl + T] : `devtools::test_file()`
+    - [Ctrl + Shift + R] : `devtools::test_coverage()`
+    - [Ctrl + R] : `devtools::test_coverage_file()`
+
+- ? Good example to demonstrate all this:
+  - Re-engineer the Case study from Chapter 4
+  - add modules & pure functions
+
+- Things beyond this chapter:
+  - Tinytest recommendations for testing
+  - Reactor for testing the links between reactives
+  - Testing in CI
+
+TODO: Testing reactivity
 
 ## Chapter 23 (Performance)
 
