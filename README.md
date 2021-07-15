@@ -555,6 +555,7 @@ Things to emphasise:
     - Ensure bugs only arise once
   - Different levels of test
   - Balance: speed, fragility, coverage
+  - Reiterate: reactive code needs a reactive context
 
 Discussions:
   - Don't test the framework!
@@ -587,6 +588,22 @@ Discussions:
   - Run `devtools::test_coverage_file()` to show you've covered all your function
   - Run `devtools::test()` to test the whole package
 
+- Testing Reactivity
+  - `shiny::testServer(my_server_fn, {given__when__then}, args, session)`
+    - sets up reactive context for shiny (server logic) tests
+    - use `args` to pass in args required in module-server
+  - `session` methods:
+    - `session$setInputs(...)`
+      - sets input values for use in testServer tests
+      - all inputs start as NULL (regardless of UI defaults)
+    - `session$flushReact()`
+      - setting a value doesn't auto-update the reactive graph
+      - this function forces the reactive graph to update
+    - `session$getReturned()`
+      - to assess the value returned by a module
+    - `session$elapse(millis = 300)`
+      - advance the time
+
 - New testthat things:
   - `expect_named(x, c("a", "b", "c"), ignore.order = TRUE, ignore.case = FALSE)`
   - `expect_setequal(x, y)`
@@ -612,8 +629,7 @@ Discussions:
   - Tinytest recommendations for testing
   - Reactor for testing the links between reactives
   - Testing in CI
-
-TODO: Testing reactivity
+  - `session` in `testServer` is the "Reactive domain". What's that mean??
 
 ## Chapter 23 (Performance)
 
