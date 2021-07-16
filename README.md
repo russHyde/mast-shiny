@@ -354,6 +354,26 @@ long-running reactive
   `some_modal_expresion` has added to the UI are now accessible via 'input' /
   'output' (this is dynamic UI)
 
+## Chapter 9 {Uploads and Downloads}
+
+- Uploads
+  - `shiny::fileInput("upload_id", "My Label")`
+    - `input$upload_id` will be a data-frame[name, size, type, datapath]
+  - Use `req(input$upload_id)` to ensure the file is uploaded before use
+
+- Downloads
+  - output functions `download*(...)`
+    - `shiny::downloadButton("download1")`
+    - `shiny::downloadLink("download2")`
+  - `shiny::downloadHandler(filename, content)`
+
+- Downloadable reports as neat application
+  - best to copy your `*.Rmd` into a temp dir before rendering
+  - render in a new process
+
+- New tools:
+  - {shinymeta} convert current app state into a report
+
 ## Chapter 14 {The reactive graph}
 
 - [Sh]
@@ -603,6 +623,8 @@ Discussions:
       - to assess the value returned by a module
     - `session$elapse(millis = 300)`
       - advance the time
+
+TODO: Testing JavaScript
 
 - New testthat things:
   - `expect_named(x, c("a", "b", "c"), ignore.order = TRUE, ignore.case = FALSE)`
