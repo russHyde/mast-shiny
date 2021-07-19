@@ -624,7 +624,26 @@ Discussions:
     - `session$elapse(millis = 300)`
       - advance the time
 
-TODO: Testing JavaScript
+- Testing JavaScript
+  - JS doesn't work in testServer, because there's no front-end in testServer
+  - Lot's of functions used in the `server()` require JS (eg, `insertUI`)
+  - Need a browser for this
+  - 'headless' (can use a browser without manual-interaction)
+  - tools: `shinytest` (also puppeteer, selenium)
+  - Slloooooowwww
+  - How to set up test-environment? (eg, custom databases)
+  - Flaky code? What if the html IDs change
+  - Can't see internal state
+
+- `shinytest::ShinyDriver`
+  - Example: a reset button and updateTextInput
+  - `app <- shinytest::ShinyDriver(my_app())`
+  - `app$setInput(name = "value")`
+  - `app$getValue("name")`
+  - `app$sendKeys(name, keys)`
+  - `app$click("someID")`
+
+TODO: notes on case-study
 
 - New testthat things:
   - `expect_named(x, c("a", "b", "c"), ignore.order = TRUE, ignore.case = FALSE)`
